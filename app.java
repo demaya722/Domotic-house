@@ -7,8 +7,15 @@ public class app {
     boolean h1;
     boolean h2;
     boolean h3;
-    
+
     public static void main(String[] args) {
         
+        //Variables
+        boolean lightsRooms;
+        boolean temperature;
+        boolean fan;
+        boolean blinds;
+        
+
     }
 }
