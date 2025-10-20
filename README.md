@@ -7,7 +7,7 @@ Sistema de control domòtic per automatitzar funcions d'una llar amb l'objectiu 
 
 ### 1. Control d'Il·luminació
 - Encendre/apagar llums per habitació individual o totes juntes
-- 7 habitacions: sala d'estar, cuina, bany i 3 dormitoris
+- 6 habitacions: sala d'estar, cuina, bany i 3 dormitoris
 - Visualització de l'estat actual de totes les llums
 
 ### 2. Control de Temperatura
