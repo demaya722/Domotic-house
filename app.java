@@ -21,6 +21,7 @@ public class app {
         // Vaeiables secundaries
         int lihtsTurn_ON_OFF = 0;
         int temperatureActive = 0;
+        double setTemperature = 0;
         int options = 0;
         boolean continuar = true;
 
@@ -177,12 +178,26 @@ public class app {
                         default:
                             System.out.println("Opció invàlida. Torna-ho a intentar.");
                             break;
+                    
                     }
+                    break;
 
                 case 2:
-                    switch (temperatureActive) {
+                    switch (temperature) {
                         case 1:
+                            if (temperatureActive == 1) {
+                                System.out.println("1- Calefacció ON");
+                                System.out.println("2- Calefacio OFF");
+                                System.out.print("Seleciona una opció: ");
+                                temperatureActive = scanner.nextInt();
 
+                                if (temperatureActive == 1) {
+                                    System.out.print("Posa la temperatura deseada: ");
+                                } else{
+                                    System.out.println("Temperatura incorrecta");
+                                }
+
+                            }
                             break;
 
                         case 2:
@@ -205,11 +220,12 @@ public class app {
 
                             break;
 
-                        case 7:
-
+                        case 7: // Tornar al menú principal
+                            System.out.println("Tornant al menú principal...");
                             break;
 
                         default:
+                            System.out.println("Opció invàlida. Torna-ho a intentar.");
                             break;
                     }
 
