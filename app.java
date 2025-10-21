@@ -25,35 +25,28 @@ public class app {
         boolean continuar = true;
         int roomChoice;
 
-        
-
-
         Scanner scanner = new Scanner(System.in);
 
         while (continuar) {
             System.out.println("============MENÚ============");
             System.out.println("1- Llums");
             System.out.println("2- Calefacció");
-            System.out.println("3- Bentilador");
+            System.out.println("3- Ventilador");
             System.out.println("4- Finestres");
-
-            System.out.print("Escull una opció del 1 - 4: ");
-            scanner.nextLine(); // Limpiar
+            System.out.println("5- Sortir");
+            System.out.print("Escull una opció del 1 - 5: ");
 
             try {
                 menu = scanner.nextInt();
-                scanner.nextLine(); // Liempiar
             } catch (Exception e) {
                 System.out.println("Error: Has d'introduir un número vàlid.");
-                scanner.nextLine(); // Limpiar
+                scanner.nextLine();
                 continue;
             }
 
-
             switch (menu) {
                 case 1:
-                    System.out.println("Has escollit llums");
-                    System.out.println("=====SELECIONAR HABITACIO======");
+                    System.out.println("=====SELECIONAR HABITACIÓ======");
                     System.out.println("1- Menjador");
                     System.out.println("2- Cuina");
                     System.out.println("3- Lavabo");
@@ -61,63 +54,62 @@ public class app {
                     System.out.println("5- Habitació 2");
                     System.out.println("6- Habitació 3");
                     System.out.println("7- Tornar al menú principal");
-
-
-
-                    System.out.print("Seleciona una habitacio del 1 - 7: ");
-                    scanner.nextLine(); // Limpiar
+                    System.out.print("Seleciona una habitació del 1 - 7: ");
 
                     try {
                         roomChoice = scanner.nextInt();
-                        scanner.nextLine(); // Limpiar
                     } catch (Exception e) {
                         System.out.println("Error: Has d'introduir un número vàlid.");
-                        scanner.nextLine(); // Limpiar
-                        return;
-
-                    }   if (roomChoice < 1 || roomChoice > 7) {
-                            System.out.println("Opció no vàlida. Tria entre 1 i 7.");
-                            return;
-                        }
-                    int optionslights = scanner.nextInt();
-                    System.out.println("1- Llums ON");
-                    System.out.println("2- LLums OFF");
-                    System.out.print("Seleciona una opcio: ");
-
-                    if (optionslights >= 2) {
-                        System.out.println("Accio invalida");
+                        scanner.nextLine();
                         continue;
                     }
-                    
-                    turnOFF_ON = (optionslights == 1);
-                    switch (option) {
-                        case 1:
-                            lightsRooms = turnOFF_ON;
-                            System.out.println("Llums del menjador " + (livingRoom ? "enceses" : "apagades"));
-                            break;
-                    
-                        default:
-                            break;
+
+                    if (roomChoice == 7) continue;
+                    if (roomChoice < 1 || roomChoice > 7) {
+                        System.out.println("Opció no vàlida.");
+                        continue;
                     }
 
+                    System.out.println("1- Llums ON");
+                    System.out.println("2- Llums OFF");
+                    System.out.print("Seleciona una opció: ");
+
+                    int optionslights = scanner.nextInt();
+
+
+                    optionslights = scanner.nextInt();
+
+                    if (optionslights < 1 || optionslights > 2) {
+                        System.out.println("Opció invàlida.");
+                        continue;
+                    }
+
+                    System.out.println("Llums de l'habitació " + roomChoice +
+                        (optionslights == 1 ? " ENCÈSES." : " APAGADES."));
                     break;
-            
+
+                case 2:
+                    System.out.println("Has escollit calefacció.");
+                    break;
+
+                case 3:
+                    System.out.println("Has escollit ventilador.");
+                    break;
+
+                case 4:
+                    System.out.println("Has escollit finestres.");
+                    break;
+
+                case 5:
+                    System.out.println("Sortint del programa...");
+                    continuar = false;
+                    break;
+
                 default:
+                    System.out.println("Opció no vàlida.");
                     break;
-
-                    case 2: // TEMPERATURE
-                    
-                    
-                    case 3: //BLINDS
-
-
-
-                    case 4: // FAN
-
-
             }
         }
-        
-
+        scanner.close();
     }
 }
