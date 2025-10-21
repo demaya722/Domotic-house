@@ -58,7 +58,7 @@ public class app {
 
     
 
-    // public static void lightsRooms(Scanner scanner) {
+    public static void lightsRooms(Scanner scanner) {
         System.out.println("===== SELECCIONA L'HABITACIÓ =====");
         System.out.println("1- Menjador");
         System.out.println("2- Cuina");
@@ -125,7 +125,7 @@ public class app {
         }
     }
 
-    public static void temperature(Scanner scanner) {
+    // public static void temperature(Scanner scanner) {
         System.out.println("===== MENÚ CALEFACCIÓ =====");
         System.out.println("1- Encendre calefacció");
         System.out.println("2- Apagar calefacció");
