@@ -125,7 +125,7 @@ public class app {
         }
     }
 
-    // public static void temperature(Scanner scanner) {
+    public static void temperature(Scanner scanner) {
         System.out.println("===== MENÚ CALEFACCIÓ =====");
         System.out.println("1- Encendre calefacció");
         System.out.println("2- Apagar calefacció");
@@ -156,7 +156,7 @@ public class app {
         }
     }
 
-    public static void showClimateTemperature() {
+    // public static void showClimateTemperature() {
         if (temperatureON) {
             System.out.println("La calefacció ON a " + temperature);
         } else {
