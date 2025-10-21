@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
-public class app {
+public class app_prova {
 
     // Variable global habitacions
     static boolean livingRoom;
     static boolean bathroom;
     static boolean kitchen;
-    static boolean h1;
-    static boolean h2;
-    static boolean h3;
+    static boolean bedroom1;
+    static boolean bedroom2;
+    static boolean bedroom3;
 
     public static void main(String[] args) {
 
@@ -139,11 +139,11 @@ public class app {
                             lihtsTurn_ON_OFF = scanner.nextInt();
 
                             if (lihtsTurn_ON_OFF == 1) {
-                                h1 = true;
+                                bedroom1 = true;
                                 System.out.println("Llums de l'habitació 1 ON");
 
                             } else if (lihtsTurn_ON_OFF == 2) {
-                                h1 = false;
+                                bedroom1 = false;
                                 System.out.println("Llums de l'habitació 1 OFF");
 
                             } else {
@@ -159,11 +159,11 @@ public class app {
                             lihtsTurn_ON_OFF = scanner.nextInt();
 
                             if (lihtsTurn_ON_OFF == 1) {
-                                h2 = true;
+                                bedroom2 = true;
                                 System.out.println("Llums de l'habitació 2 ON");
 
                             } else if (lihtsTurn_ON_OFF == 2) {
-                                h2 = false;
+                                bedroom2 = false;
                                 System.out.println("Llums de l'habitació 2 OFF");
 
                             } else {
@@ -179,11 +179,11 @@ public class app {
                             lihtsTurn_ON_OFF = scanner.nextInt();
 
                             if (lihtsTurn_ON_OFF == 1) {
-                                h3 = true;
+                                bedroom3 = true;
                                 System.out.println("Llums de l'habitació 3 ON");
 
                             } else if (lihtsTurn_ON_OFF == 2) {
-                                h3 = false;
+                                bedroom3 = false;
                                 System.out.println("Llums de l'habitació 3 OFF");
 
                             } else {
