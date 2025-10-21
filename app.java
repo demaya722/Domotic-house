@@ -17,7 +17,10 @@ public class app {
         int temperature = 0;
         int fan = 0;
         int blinds = 0;
+
+        // Vaeiables secundaries
         int lihtsTurn_ON_OFF = 0;
+        int temperatureActive = 0;
         int options = 0;
         boolean continuar = true;
 
@@ -177,7 +180,39 @@ public class app {
                     }
 
                 case 2:
-                    System.out.println("Has escollit calefacció.");
+                    switch (temperatureActive) {
+                        case 1:
+
+                            break;
+
+                        case 2:
+
+                            break;
+
+                        case 3:
+
+                            break;
+
+                        case 4:
+
+                            break;
+
+                        case 5:
+
+                            break;
+
+                        case 6:
+
+                            break;
+
+                        case 7:
+
+                            break;
+
+                        default:
+                            break;
+                    }
+
                     break;
 
                 default:
