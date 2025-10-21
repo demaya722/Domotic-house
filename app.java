@@ -35,6 +35,7 @@ public class app {
             System.out.println("3- Ventilador");
             System.out.println("4- Finestres");
             System.out.println("5- Sortir");
+
             System.out.print("Escull una opció del 1 - 5: ");
 
             // Comprovació del numero valid escullit en el menú
@@ -56,6 +57,7 @@ public class app {
                     System.out.println("5- Habitació 2");
                     System.out.println("6- Habitació 3");
                     System.out.println("7- Tornar al menú principal");
+
                     System.out.print("Seleciona una habitació del 1 - 7: ");
 
                     try {
@@ -72,15 +74,18 @@ public class app {
                         case 1: // Menjador
                             System.out.println("1- Llums ON");
                             System.out.println("2- Llums OFF");
+
                             System.out.print("Seleciona una opció: ");
                             lihtsTurn_ON_OFF = scanner.nextInt();
 
                             if (lihtsTurn_ON_OFF == 1) {
                                 livingRoom = true;
                                 System.out.println("Llums del menjador ON");
+
                             } else if (lihtsTurn_ON_OFF == 2) {
                                 livingRoom = false;
                                 System.out.println("Llums del menjador OFF");
+
                             } else {
                                 System.out.println("Opció invàlida.");
                             }
@@ -89,15 +94,18 @@ public class app {
                         case 2: // Cuina
                             System.out.println("1- Llums ON");
                             System.out.println("2- Llums OFF");
+
                             System.out.print("Seleciona una opció: ");
                             lihtsTurn_ON_OFF = scanner.nextInt();
 
                             if (lihtsTurn_ON_OFF == 1) {
                                 kitchen = true;
                                 System.out.println("Llums de la cuina ON");
+
                             } else if (lihtsTurn_ON_OFF == 2) {
                                 kitchen = false;
                                 System.out.println("Llums de la cuina OFF");
+
                             } else {
                                 System.out.println("Opció invàlida.");
                             }
@@ -106,15 +114,18 @@ public class app {
                         case 3: // Lavabo
                             System.out.println("1- Llums ON");
                             System.out.println("2- Llums OFF");
+
                             System.out.print("Seleciona una opció: ");
                             lihtsTurn_ON_OFF = scanner.nextInt();
 
                             if (lihtsTurn_ON_OFF == 1) {
                                 bathroom = true;
                                 System.out.println("Llums del lavabo ON");
+
                             } else if (lihtsTurn_ON_OFF == 2) {
                                 bathroom = false;
                                 System.out.println("Llums del lavabo OFF");
+
                             } else {
                                 System.out.println("Opció invàlida.");
                             }
@@ -123,15 +134,18 @@ public class app {
                         case 4: // Habitació 1
                             System.out.println("1- Llums ON");
                             System.out.println("2- Llums OFF");
+
                             System.out.print("Seleciona una opció: ");
                             lihtsTurn_ON_OFF = scanner.nextInt();
 
                             if (lihtsTurn_ON_OFF == 1) {
                                 h1 = true;
                                 System.out.println("Llums de l'habitació 1 ON");
+
                             } else if (lihtsTurn_ON_OFF == 2) {
                                 h1 = false;
                                 System.out.println("Llums de l'habitació 1 OFF");
+
                             } else {
                                 System.out.println("Opció invàlida.");
                             }
@@ -140,15 +154,18 @@ public class app {
                         case 5: // Habitació 2
                             System.out.println("1- Llums ON");
                             System.out.println("2- Llums OFF");
+
                             System.out.print("Seleciona una opció: ");
                             lihtsTurn_ON_OFF = scanner.nextInt();
 
                             if (lihtsTurn_ON_OFF == 1) {
                                 h2 = true;
                                 System.out.println("Llums de l'habitació 2 ON");
+
                             } else if (lihtsTurn_ON_OFF == 2) {
                                 h2 = false;
                                 System.out.println("Llums de l'habitació 2 OFF");
+
                             } else {
                                 System.out.println("Opció invàlida.");
                             }
@@ -157,15 +174,18 @@ public class app {
                         case 6: // Habitació 3
                             System.out.println("1- Llums ON");
                             System.out.println("2- Llums OFF");
+
                             System.out.print("Seleciona una opció: ");
                             lihtsTurn_ON_OFF = scanner.nextInt();
 
                             if (lihtsTurn_ON_OFF == 1) {
                                 h3 = true;
                                 System.out.println("Llums de l'habitació 3 ON");
+
                             } else if (lihtsTurn_ON_OFF == 2) {
                                 h3 = false;
                                 System.out.println("Llums de l'habitació 3 OFF");
+
                             } else {
                                 System.out.println("Opció invàlida.");
                             }
@@ -178,54 +198,52 @@ public class app {
                         default:
                             System.out.println("Opció invàlida. Torna-ho a intentar.");
                             break;
-                    
+
                     }
                     break;
 
                 case 2:
+                    System.out.println("===== MENÚ CALEFACCIÓ =====");
+                    System.out.println("1- Activar calefacció");
+                    System.out.println("2- Desactivar calefacció");
+                    System.out.println("3- Tornar al menú principal");
+
+                    System.out.print("Selecciona una opció: ");
+                    temperature = scanner.nextInt();
+
+                    try {
+                        temperature = scanner.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Error: Has d'introduir un número vàlid.");
+                        scanner.nextLine();
+                        continue;
+                    }
+                    
+
                     switch (temperature) {
                         case 1:
-                            if (temperatureActive == 1) {
-                                System.out.println("1- Calefacció ON");
-                                System.out.println("2- Calefacio OFF");
-                                System.out.print("Seleciona una opció: ");
+                            temperatureActive = 1;
+                                System.out.println("Calefacció ON");
                                 temperatureActive = scanner.nextInt();
-
-                                if (temperatureActive == 1) {
-                                    System.out.print("Posa la temperatura deseada: ");
-                                } else{
-                                    System.out.println("Temperatura incorrecta");
-                                }
-
-                            }
+                                System.out.print("Introdueix la temperatura: ");
+                                setTemperature = scanner.nextInt();
+                                System.out.println("Temperatura establerta a " + setTemperature + "ºC");
                             break;
 
                         case 2:
+                            System.out.println("Calefacció OFF");
+                            temperatureActive = scanner.nextInt();
 
                             break;
 
-                        case 3:
-
-                            break;
-
-                        case 4:
-
-                            break;
-
-                        case 5:
-
-                            break;
-
-                        case 6:
-
-                            break;
-
-                        case 7: // Tornar al menú principal
+                        case 3: // Tornar al menú principal
                             System.out.println("Tornant al menú principal...");
+
                             break;
 
                         default:
                             System.out.println("Opció invàlida. Torna-ho a intentar.");
+
                             break;
                     }
 
