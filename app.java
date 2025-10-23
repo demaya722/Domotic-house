@@ -42,6 +42,7 @@ public class app {
                 temperature(scanner);
 
             } else if (menuOption == 3) { // Ventiladors
+                blinds(scanner);
 
             } else if (menuOption == 4) { // Finestres
 
@@ -151,7 +152,7 @@ public class app {
             System.out.println("Calefacció OFF");
 
         } else if (temperatureOptions == 3) { // Mostra l'estat de la calefació
-            show_Climate_Temperature(); 
+            show_Climate_Temperature();
 
         } else if (temperatureOptions == 4) {
             System.out.println("Tornant al menú principal...");
@@ -170,10 +171,16 @@ public class app {
     }
 
     public static void show_Climate_Temperature() {
+        
         if (temperatureON) {
             System.out.println("La calefacció ON a " + temperature);
         } else {
             System.out.println("La calefacció OFF");
         }
+    }
+
+    // FINESTRES
+    public static void blinds(){
+        
     }
 }
