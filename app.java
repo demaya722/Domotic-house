@@ -18,6 +18,14 @@ public class app {
     static boolean temperatureON;
     static double temperature = 0.0;
 
+    // Finestres
+    static int blind_Room_Option;
+    static int blind_Option;
+    static boolean blinds_ON;
+    static double blinds = 0.0;
+
+
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -28,8 +36,8 @@ public class app {
             System.out.println("============ MENÚ ============");
             System.out.println("1- Llums");
             System.out.println("2- Calefacció");
-            System.out.println("3- Ventilador");
-            System.out.println("4- Finestres");
+            System.out.println("3- Finestres");
+            System.out.println("4- Ventilador");
             System.out.println("5- Sortir");
             System.out.print("Escull una opció (1-5): ");
 
@@ -160,6 +168,7 @@ public class app {
         } else {
             System.out.println("Opció invàlida.");
         }
+        
     }
 
     public static void menu_Temperature() {
@@ -180,7 +189,102 @@ public class app {
     }
 
     // FINESTRES
-    public static void blinds(){
-        
+    public static void blinds(Scanner scanner){
+
+        blinds_Menu();
+
+        System.out.print("Selecciona una habitació: ");
+
+        blind_Room_Option = scanner.nextInt();
+        if (blind_Room_Option >= 1 && blind_Room_Option <= 6) { // Opcions de les llums de les habitacions
+            System.out.println("1- Finestres ON");
+            System.out.println("2- Finestres OFF");
+
+            System.out.print("Selecciona una opció: ");
+            blind_Option = scanner.nextInt();
+
+            // Switch per saber quines llums encenem o apaguem
+            switch (blind_Room_Option) {
+                case 1: // Menjador
+                    livingRoom = (blind_Option == 1);
+                    blinds_ON_OFF();
+                    break;
+
+                case 2: // Cuina
+                    kitchen = (blind_Option == 1);
+                    blinds_ON_OFF();
+                    break;
+
+                case 3: // Lavabo
+                    bathroom = (blind_Option == 1);
+                    blinds_ON_OFF();
+                    break;
+
+                case 4: // Habitació 1
+                    bedroom1 = (blind_Option == 1);
+                    blinds_ON_OFF();
+                    break;
+
+                case 5: // Habitació 2
+                    bedroom2 = (blind_Option == 1);
+                    blinds_ON_OFF();
+                    break;
+
+                case 6: // Habitació 3
+                    bedroom3 = (blind_Option == 1);
+                    blinds_ON_OFF();
+                    break;
+            }
+
+            get_Status_Blinds(scanner);
+
+        } else if (blind_Room_Option == 7) {
+            System.out.println("Tornant al menú principal...");
+        } else {
+            System.out.println("Opció invàlida.");
+        }
+    }
+
+    public static void blinds_Menu(){
+        System.out.println("===== SELECCIONA L'HABITACIÓ =====");
+        System.out.println("1- Menjador");
+        System.out.println("2- Cuina");
+        System.out.println("3- Lavabo");
+        System.out.println("4- Habitació 1");
+        System.out.println("5- Habitació 2");
+        System.out.println("6- Habitació 3");
+        System.out.println("7- Tornar al menú principal");
+    }
+
+    public static void get_Status_Blinds(Scanner scanner){
+        if (blind_Room_Option == 1) { // SI la temperatura està encesa demana emperatura
+            System.out.print("Introdueix la l'altura de la finestres (0 - 100%): ");
+            blinds = scanner.nextDouble();
+            blinds_ON = true;
+            System.out.println("FInestre ON ==> finestres al a " + blinds + "%");
+
+        } else if (blind_Room_Option == 2) {
+            blinds_ON = false;
+            System.out.println("FInestre OFF");
+
+        } else if (blind_Room_Option == 3) { // Mostra l'estat de la calefació
+            blinds_ON_OFF();
+
+        } else if (blind_Room_Option == 4) {
+            System.out.println("Tornant al menú principal...");
+
+        } else {
+            System.out.println("Opció invàlida.");
+        }
+    }
+
+    public static void blinds_ON_OFF() {
+
+        if (blind_Option == 1) {
+            System.out.println("Finestres de l'habitació " + blind_Room_Option + ": Finestres ON");
+        } else {
+            System.out.println("Finestres de l'habitació " + blind_Room_Option + ": Finestres OFF");
+        }
     }
 }
+
