@@ -14,7 +14,6 @@ public class app {
     static boolean temperatureON;
     static double temperature = 0.0;
 
-    // MAIN
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -32,20 +31,17 @@ public class app {
 
             menuOption = scanner.nextInt();
 
-            if (menuOption == 1) {
+            if (menuOption == 1) { // Llums
                 lightsRooms(scanner);
 
-            } else if (menuOption == 2) {
+            } else if (menuOption == 2) { // Temperatura
                 temperature(scanner);
 
-            } else if (menuOption == 3) {
-                System.out.println("Has escollit el ventilador.");
+            } else if (menuOption == 3) { // Ventiladors
 
-            } else if (menuOption == 4) {
-                System.out.println("Has escollit les finestres.");
+            } else if (menuOption == 4) { // Finestres
 
-            } else if (menuOption == 5) {
-                System.out.println("Sortint del programa...");
+            } else if (menuOption == 5) { // Sortir del programa
 
             } else {
                 System.out.println("Opció invàlida. Torna-ho a intentar.");
@@ -59,16 +55,9 @@ public class app {
     
 
     public static void lightsRooms(Scanner scanner) {
-        System.out.println("===== SELECCIONA L'HABITACIÓ =====");
-        System.out.println("1- Menjador");
-        System.out.println("2- Cuina");
-        System.out.println("3- Lavabo");
-        System.out.println("4- Habitació 1");
-        System.out.println("5- Habitació 2");
-        System.out.println("6- Habitació 3");
-        System.out.println("7- Tornar al menú principal");
-        System.out.print("Selecciona una habitació: ");
+        mostrarMenuDeLuces();
 
+        System.out.print("Selecciona una habitació: ");
         int roomOption = scanner.nextInt();
 
         if (roomOption >= 1 && roomOption <= 6) {
@@ -79,40 +68,22 @@ public class app {
 
             switch (roomOption) {
                 case 1: // Menjador
-                    if (lightOption == 1)
-                        livingRoom = true;
-                    else
-                        livingRoom = false;
+                    livingRoom = (lightOption == 1);
                     break;
                 case 2: // Cuina
-                    if (lightOption == 1)
-                        kitchen = true;
-                    else
-                        kitchen = false;
+                    kitchen = (lightOption == 1);
                     break;
                 case 3: // Lavabo
-                    if (lightOption == 1)
-                        bathroom = true;
-                    else
-                        bathroom = false;
+                    bathroom = (lightOption == 1);
                     break;
                 case 4: // Habitació 1
-                    if (lightOption == 1)
-                        bedroom1 = true;
-                    else
-                        bedroom1 = false;
+                    bedroom1 = (lightOption == 1);
                     break;
                 case 5: // Habitació 2
-                    if (lightOption == 1)
-                        bedroom2 = true;
-                    else
-                        bedroom2 = false;
+                    bedroom2 = (lightOption == 1);
                     break;
                 case 6: // Habitació 3
-                    if (lightOption == 1)
-                        bedroom3 = true;
-                    else
-                        bedroom3 = false;
+                    bedroom3 = (lightOption == 1);
                     break;
             }
 
@@ -123,6 +94,17 @@ public class app {
         } else {
             System.out.println("Opció invàlida.");
         }
+    }
+
+    private static void mostrarMenuDeLuces() {
+        System.out.println("===== SELECCIONA L'HABITACIÓ =====");
+        System.out.println("1- Menjador");
+        System.out.println("2- Cuina");
+        System.out.println("3- Lavabo");
+        System.out.println("4- Habitació 1");
+        System.out.println("5- Habitació 2");
+        System.out.println("6- Habitació 3");
+        System.out.println("7- Tornar al menú principal");
     }
 
     public static void temperature(Scanner scanner) {
@@ -156,7 +138,7 @@ public class app {
         }
     }
 
-    // public static void showClimateTemperature() {
+    public static void showClimateTemperature() {
         if (temperatureON) {
             System.out.println("La calefacció ON a " + temperature);
         } else {
