@@ -24,6 +24,12 @@ public class app {
     static boolean blinds_ON;
     static double blinds = 0.0;
 
+    //  Ventilador
+    static int fan_Room_Option;
+    static int fan_Option;
+    static boolean fan_ON;
+    static int fanSpeed = 0;
+
 
 
     public static void main(String[] args) {
@@ -286,5 +292,100 @@ public class app {
             System.out.println("Finestres de l'habitació " + blind_Room_Option + ": Finestres OFF");
         }
     }
+
+    // VENTILADOR
+    public static void fan(Scanner scanner) {
+
+    fan_Menu();
+
+    System.out.print("Selecciona una habitació: ");
+    fan_Room_Option = scanner.nextInt();
+
+    if (fan_Room_Option >= 1 && fan_Room_Option <= 6) {
+        System.out.println("1- Ventilador ON");
+        System.out.println("2- Ventilador OFF");
+
+        System.out.print("Selecciona una opció: ");
+        fan_Option = scanner.nextInt();
+
+        // Switch per saber quin ventilador encenem o apaguem
+        switch (fan_Room_Option) {
+            case 1: // Menjador
+                livingRoom = (fan_Option == 1);
+                fan_ON_OFF();
+                break;
+
+            case 2: // Cuina
+                kitchen = (fan_Option == 1);
+                fan_ON_OFF();
+                break;
+
+            case 3: // Lavabo
+                bathroom = (fan_Option == 1);
+                fan_ON_OFF();
+                break;
+
+            case 4: // Habitació 1
+                bedroom1 = (fan_Option == 1);
+                fan_ON_OFF();
+                break;
+
+            case 5: // Habitació 2
+                bedroom2 = (fan_Option == 1);
+                fan_ON_OFF();
+                break;
+
+            case 6: // Habitació 3
+                bedroom3 = (fan_Option == 1);
+                fan_ON_OFF();
+                break;
+        }
+
+        get_Status_Fan(scanner);
+
+    } else if (fan_Room_Option == 7) {
+        System.out.println("Tornant al menú principal...");
+    } else {
+        System.out.println("Opció invàlida.");
+    }
+}
+
+    public static void fan_Menu(){
+        System.out.println("===== SELECCIONA L'HABITACIÓ =====");
+        System.out.println("1- Menjador");
+        System.out.println("2- Cuina");
+        System.out.println("3- Lavabo");
+        System.out.println("4- Habitació 1");
+        System.out.println("5- Habitació 2");
+        System.out.println("6- Habitació 3");
+        System.out.println("7- Tornar al menú principal");
+    }
+
+    public static void get_Status_Fan(Scanner scanner){
+        if (fan_Option == 1) {
+            System.out.print("Introdueix la velocitat del ventilador (1 - 5): ");
+            fanSpeed = scanner.nextInt();
+
+            if (fanSpeed < 1 || fanSpeed > 3) {
+                System.out.println("Velocitat invàlida. Ha de ser entre 1 i 5.");
+            } else {
+                System.out.println("Ventilador ON ==> velocitat " + fanSpeed);
+            }
+
+        } else {
+            System.out.println("Ventilador OFF");
+        }
+    }
+
+    public static void fan_ON_OFF() {
+
+        if (fan_Option == 1) {
+            System.out.println("Ventilador de l'habitació " + fan_Room_Option + ": ON");
+        } else {
+            System.out.println("Ventilador de l'habitació " + fan_Room_Option + ": OFF");
+        }
+    }
+
+
 }
 
