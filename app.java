@@ -59,6 +59,7 @@ public class app {
                 blinds(scanner);
 
             } else if (menuOption == 4) { // Finestres
+                fan(scanner);
 
             } else if (menuOption == 5) { // Sortir del programa
 
