@@ -55,20 +55,25 @@ public class app {
     
 
     public static void lightsRooms(Scanner scanner) {
-        mostrarMenuDeLuces();
+
+        // Variablers
+        int roomOption = scanner.nextInt();
+        int lightOption = scanner.nextInt();
+
+        // Menu de les llums
+        showLightMenu();
 
         System.out.print("Selecciona una habitació: ");
-        int roomOption = scanner.nextInt();
 
         if (roomOption >= 1 && roomOption <= 6) {
             System.out.println("1- Llums ON");
             System.out.println("2- Llums OFF");
             System.out.print("Selecciona una opció: ");
-            int lightOption = scanner.nextInt();
 
             switch (roomOption) {
                 case 1: // Menjador
                     livingRoom = (lightOption == 1);
+                    
                     break;
                 case 2: // Cuina
                     kitchen = (lightOption == 1);
@@ -96,7 +101,7 @@ public class app {
         }
     }
 
-    private static void mostrarMenuDeLuces() {
+    private static void showLightMenu() {
         System.out.println("===== SELECCIONA L'HABITACIÓ =====");
         System.out.println("1- Menjador");
         System.out.println("2- Cuina");
