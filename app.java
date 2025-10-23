@@ -10,6 +10,10 @@ public class app {
     static boolean bedroom2;
     static boolean bedroom3;
 
+    // Llums
+    static  int lightOption;
+    static int roomOption;
+
     // Calefacció
     static boolean temperatureON;
     static double temperature = 0.0;
@@ -52,47 +56,56 @@ public class app {
         scanner.close();
     }
 
-    
-
     public static void lightsRooms(Scanner scanner) {
 
         // Variablers
-        int roomOption = scanner.nextInt();
-        int lightOption = scanner.nextInt();
 
         // Menu de les llums
-        showLightMenu();
+        showLightMenu(); // public statuc void...
 
         System.out.print("Selecciona una habitació: ");
 
-        if (roomOption >= 1 && roomOption <= 6) {
+        roomOption = scanner.nextInt();
+        if (roomOption >= 1 && roomOption <= 6) { // Opcions de les llums de les habitacions
             System.out.println("1- Llums ON");
             System.out.println("2- Llums OFF");
-            System.out.print("Selecciona una opció: ");
 
+            System.out.print("Selecciona una opció: ");
+            int lightOption = scanner.nextInt();
+
+
+            // Switch per saber quines llums encenem o apaguem
             switch (roomOption) {
                 case 1: // Menjador
                     livingRoom = (lightOption == 1);
-                    
+                    lightON_OFF(); // public statuc void...
                     break;
+                    
                 case 2: // Cuina
                     kitchen = (lightOption == 1);
+                    lightON_OFF(); // public statuc void...
                     break;
+
                 case 3: // Lavabo
                     bathroom = (lightOption == 1);
+                    lightON_OFF(); // public statuc void...
                     break;
+
                 case 4: // Habitació 1
                     bedroom1 = (lightOption == 1);
+                    lightON_OFF(); // public statuc void...
                     break;
+
                 case 5: // Habitació 2
                     bedroom2 = (lightOption == 1);
+                    lightON_OFF(); // public statuc void...
                     break;
+
                 case 6: // Habitació 3
                     bedroom3 = (lightOption == 1);
+                    lightON_OFF(); // public statuc void...
                     break;
             }
-
-            System.out.println("Llums de l'habitació " + roomOption);
 
         } else if (roomOption == 7) {
             System.out.println("Tornant al menú principal...");
@@ -110,6 +123,16 @@ public class app {
         System.out.println("5- Habitació 2");
         System.out.println("6- Habitació 3");
         System.out.println("7- Tornar al menú principal");
+    }
+
+    public static void lightON_OFF(){
+
+        // Variable
+        if (lightOption == 1) {
+                        System.out.println("Llums de l'habitació " + roomOption + ": Llums ON");
+                    } else {
+                        System.out.println("Llums de l'habitació " + roomOption + ": Llums OFF");
+                    }
     }
 
     public static void temperature(Scanner scanner) {
@@ -133,7 +156,7 @@ public class app {
             System.out.println("Calefacció OFF");
 
         } else if (temperatureOptions == 3) {
-            showClimateTemperature(); //public statuc void...
+            showClimateTemperature(); // public statuc void...
 
         } else if (temperatureOptions == 4) {
             System.out.println("Tornant al menú principal...");
