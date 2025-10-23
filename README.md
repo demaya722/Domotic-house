@@ -25,11 +25,6 @@ Sistema de control domòtic per automatitzar funcions d'una llar amb l'objectiu 
 - Regular velocitat del ventilador
 - Consultar estat del ventilador
 
-### 5. Control d'Altaveus
-- Encendre/apagar altaveus de la sala d'estar
-- Controlar volum
-- Consultar estat dels altaveus
-
 ## Objectiu
 Simular un sistema domòtic complet que permeti als usuaris controlar manualment diferents aspectes de la seva llar mitjançant un menú d'opcions.
 
