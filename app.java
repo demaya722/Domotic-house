@@ -11,7 +11,7 @@ public class app {
     static boolean bedroom3;
 
     // Llums
-    static  int lightOption;
+    static int lightOption;
     static int roomOption;
 
     // Calefacció
@@ -56,12 +56,11 @@ public class app {
         scanner.close();
     }
 
+    // LLUMS
     public static void lightsRooms(Scanner scanner) {
 
-        // Variablers
-
         // Menu de les llums
-        show_Light_Menu(); // public statuc void...
+        light_Menu(); 
 
         System.out.print("Selecciona una habitació: ");
 
@@ -73,37 +72,36 @@ public class app {
             System.out.print("Selecciona una opció: ");
             int lightOption = scanner.nextInt();
 
-
             // Switch per saber quines llums encenem o apaguem
             switch (roomOption) {
                 case 1: // Menjador
                     livingRoom = (lightOption == 1);
-                    light_ON_OFF(); // public statuc void...
+                    light_ON_OFF(); 
                     break;
-                    
+
                 case 2: // Cuina
                     kitchen = (lightOption == 1);
-                    light_ON_OFF(); // public statuc void...
+                    light_ON_OFF(); 
                     break;
 
                 case 3: // Lavabo
                     bathroom = (lightOption == 1);
-                    light_ON_OFF(); // public statuc void...
+                    light_ON_OFF(); 
                     break;
 
                 case 4: // Habitació 1
                     bedroom1 = (lightOption == 1);
-                    light_ON_OFF(); // public statuc void...
+                    light_ON_OFF(); 
                     break;
 
                 case 5: // Habitació 2
                     bedroom2 = (lightOption == 1);
-                    light_ON_OFF(); // public statuc void...
+                    light_ON_OFF(); 
                     break;
 
                 case 6: // Habitació 3
                     bedroom3 = (lightOption == 1);
-                    light_ON_OFF(); // public statuc void...
+                    light_ON_OFF(); 
                     break;
             }
 
@@ -114,7 +112,7 @@ public class app {
         }
     }
 
-    private static void show_Light_Menu() {
+    private static void light_Menu() {
         System.out.println("===== SELECCIONA L'HABITACIÓ =====");
         System.out.println("1- Menjador");
         System.out.println("2- Cuina");
@@ -125,24 +123,24 @@ public class app {
         System.out.println("7- Tornar al menú principal");
     }
 
-    public static void light_ON_OFF(){
+    public static void light_ON_OFF() {
 
-        // Variable
         if (lightOption == 1) {
-                        System.out.println("Llums de l'habitació " + roomOption + ": Llums ON");
-                    } else {
-                        System.out.println("Llums de l'habitació " + roomOption + ": Llums OFF");
-                    }
+            System.out.println("Llums de l'habitació " + roomOption + ": Llums ON");
+        } else {
+            System.out.println("Llums de l'habitació " + roomOption + ": Llums OFF");
+        }
     }
 
+    // CALEFACCIÓ
     public static void temperature(Scanner scanner) {
 
-        menu_Temperature(); // public statuc void...
+        menu_Temperature();
         System.out.print("Selecciona una opció: ");
 
         int temperatureOptions = scanner.nextInt();
 
-        if (temperatureOptions == 1) {
+        if (temperatureOptions == 1) { // SI la temperatura està encesa demana emperatura
             System.out.print("Introdueix la temperatura: ");
             temperature = scanner.nextDouble();
             temperatureON = true;
@@ -152,8 +150,8 @@ public class app {
             temperatureON = false;
             System.out.println("Calefacció OFF");
 
-        } else if (temperatureOptions == 3) {
-            show_Climate_Temperature(); // public statuc void...
+        } else if (temperatureOptions == 3) { // Mostra l'estat de la calefació
+            show_Climate_Temperature(); 
 
         } else if (temperatureOptions == 4) {
             System.out.println("Tornant al menú principal...");
@@ -163,7 +161,7 @@ public class app {
         }
     }
 
-    public static void menu_Temperature(){
+    public static void menu_Temperature() {
         System.out.println("===== MENÚ CALEFACCIÓ =====");
         System.out.println("1- Encendre calefacció");
         System.out.println("2- Apagar calefacció");
