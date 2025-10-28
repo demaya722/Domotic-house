@@ -19,8 +19,8 @@ public class app {
     static int roomOption;
 
     // Calefacció
-    static boolean temperatureON;
-    static double temperature = 0.0;
+    static boolean speed_ON;
+    static double speed = 0.0;
 
     // Finestres
     static int blind_Room_Option;
@@ -172,16 +172,16 @@ public class app {
 
             if (temperatureOptions == 1) { // SI la temperatura està encesa demana emperatura
                 System.out.print("Introdueix la temperatura (entre 10 i 30 ºC): ");
-                temperature = scanner.nextDouble();
-                temperatureON = true;
+                speed = scanner.nextDouble();
+                speed_ON = true;
 
                 // Bucle per demana temperatura adecuada
                 bucle_Request_Temperature(scanner);
 
-                System.out.println("Calefacció ON ==> temperatura a " + temperature);
+                System.out.println("Calefacció ON ==> temperatura a " + speed);
 
             } else if (temperatureOptions == 2) {
-                temperatureON = false;
+                speed_ON = false;
                 System.out.println("Calefacció OFF");
 
             } else if (temperatureOptions == 3) { // Mostra l'estat de la calefació
@@ -202,10 +202,10 @@ public class app {
     }
 
     public static void bucle_Request_Temperature(Scanner scanner) {
-        while (temperature <= 10 || temperature >= 30) {
+        while (speed <= 10 || speed >= 30) {
             System.out.println("Temperatura invàlida. Ha de ser entre 10 i 30 ºC.");
             System.out.print("Introdueix una temperatura vàlida: ");
-            temperature = scanner.nextDouble();
+            speed = scanner.nextDouble();
         }
     }
 
@@ -223,45 +223,56 @@ public class app {
     public static void set_heating_time(Scanner scanner) {
         int time_Schedule;
         do {
-            System.out.print("Vols programar la calefacció per alguna hora? 1-Sí, 2-No");
+            System.out.println("Vols programar la calefacció per alguna hora?");
+            System.out.println("1- Sí");
+            System.out.println("2- No");
+            System.out.print("Seleciona una opció: ");
+
             time_Schedule = scanner.nextInt();
 
-            if (time_Schedule == 1) {
-                System.out.print("A quina hora vols que s'encengui la calefacció? (0-23): ");
-                int horaProg = scanner.nextInt();
-
-                // Validació simple
-                while (horaProg < 0 || horaProg > 23) {
-                    System.out.print("Hora invàlida. Torna a introduir-la (0-23): ");
-                    horaProg = scanner.nextInt();
-                }
-
-                System.out.print("Quina temperatura vols programar? (10-30 ºC): ");
-                int tempProg = scanner.nextInt();
-                while (tempProg < 10 || tempProg > 30) {
-                    System.out.print("Temperatura invàlida. Torna a introduir-la (10-30 ºC): ");
-                    tempProg = scanner.nextInt();
-                }
-                System.out.println("===================HORA PROGRAMADA CALEFACCIÓ===================");
-                System.out.println("Calefacció programada a les " + horaProg + ":00 a " + tempProg + "ºC");
-
-                // Bucle que simula el “pas del temps” de 0 a 23 hores
-                for (int hora = 0; hora < 24; hora++) {
-                    if (hora == horaProg) {
-                        temperatureON = true;
-                        temperature = tempProg;
-                        System.out.println("Automàtic: Calefacció ON a " + temperature + "ºC a les " + hora + ":00");
-                    }
-                }
-            }
+            if_Heating_Time(scanner);
 
         } while (time_Schedule != 2);
     }
 
+    public static void if_Heating_Time(Scanner scanner) {
+        int time_Schedule = scanner.nextInt();
+
+        if (time_Schedule == 1) {
+            System.out.print("A quina hora vols que s'encengui la calefacció? (0-23): ");
+            int horaProg = scanner.nextInt();
+
+            // Validació simple
+            while (horaProg < 0 || horaProg > 23) {
+                System.out.print("Hora invàlida. Torna a introduir-la (0-23): ");
+                horaProg = scanner.nextInt();
+            }
+
+            System.out.print("Quina temperatura vols programar? (10-30 ºC): ");
+            int tempProg = scanner.nextInt();
+            while (tempProg < 10 || tempProg > 30) {
+                System.out.print("Temperatura invàlida. Torna a introduir-la (10-30 ºC): ");
+                tempProg = scanner.nextInt();
+            }
+            System.out.println("===================HORA PROGRAMADA CALEFACCIÓ===================");
+            System.out.println("Calefacció programada a les " + horaProg + ":00 a " + tempProg + "ºC");
+
+            // Bucle que simula el “pas del temps” de 0 a 23 hores
+            for (int hora = 0; hora < 24; hora++) {
+                if (hora == horaProg) {
+                    speed_ON = true;
+                    speed = tempProg;
+                    System.out.println("Automàtic: Calefacció ON a " + speed + "ºC a les " + hora + ":00");
+                    System.out.println("=========================================================================");
+                }
+            }
+        }
+    }
+
     public static void show_Climate_Temperature() {
 
-        if (temperatureON) {
-            System.out.println("La calefacció ON a " + temperature);
+        if (speed_ON) {
+            System.out.println("La calefacció ON a " + speed);
         } else {
             System.out.println("La calefacció OFF");
         }
@@ -421,12 +432,15 @@ public class app {
 
                 get_Status_Fan(scanner);
 
-            } else if (fan_Room_Option == 7) {
+            } else if (fan_Room_Option == 7) { // Programar ventilador
+                program_Fan(scanner);
+
+            } else if (fan_Room_Option == 8) {
                 System.out.println("Tornant al menú principal...");
             } else {
                 System.out.println("Opció invàlida.");
             }
-        } while (fan_Room_Option != 7);
+        } while (fan_Room_Option != 8);
     }
 
     public static void fan_Menu() {
@@ -438,7 +452,55 @@ public class app {
         System.out.println("4- Habitació 1");
         System.out.println("5- Habitació 2");
         System.out.println("6- Habitació 3");
-        System.out.println("7- Tornar al menú principal");
+        System.out.println("7- Programar ventilador");
+        System.out.println("8- Tornar al menú principal");
+    }
+
+    public static void program_Fan(Scanner scanner) {
+        int time_Fun;
+        do {
+            System.out.println("Vols programar el ventilador per alguna hora?");
+            System.out.println("1- Sí");
+            System.out.println("2- No");
+            System.out.print("Selecciona una opció: ");
+
+            time_Fun = scanner.nextInt();
+
+            if (time_Fun == 1) {
+                if_Fun_Time(scanner); // llamamos a la función para programar hora y velocidad
+            }
+
+        } while (time_Fun != 2);
+    }
+
+    public static void if_Fun_Time(Scanner scanner) {
+        System.out.print("A quina hora vols que s'encengui el ventilador? (0-23): ");
+        int hora_Prog = scanner.nextInt();
+
+        while (hora_Prog < 0 || hora_Prog > 23) {
+            System.out.print("Hora invàlida. Torna a introduir-la (0-23): ");
+            hora_Prog = scanner.nextInt();
+        }
+
+        System.out.print("Quina velocitat vols programar? (1 - 5): ");
+        int speed_Prog = scanner.nextInt();
+        while (speed_Prog < 1 || speed_Prog > 5) {
+            System.out.print("Velocitat invàlida. Torna a introduir-la (1 - 5): ");
+            speed_Prog = scanner.nextInt();
+        }
+
+        System.out.println("===================HORA PROGRAMADA VENTILADOR===================");
+        System.out.println("Ventilador programat a les " + hora_Prog + ":00 a velocitat " + speed_Prog);
+
+        // Bucle que simula el pas del temps de 0 a 23 hores
+        for (int hora = 0; hora < 24; hora++) {
+            if (hora == hora_Prog) {
+                fan_ON = true;
+                fanSpeed = speed_Prog;
+                System.out.println("Automàtic: Ventilador ON a velocitat " + fanSpeed + " a les " + hora + ":00");
+                System.out.println("================================================================");
+            }
+        }
     }
 
     public static void get_Status_Fan(Scanner scanner) {
@@ -446,7 +508,7 @@ public class app {
             System.out.print("Introdueix la velocitat del ventilador (1 - 5): ");
             fanSpeed = scanner.nextInt();
 
-            if (fanSpeed < 1 || fanSpeed > 3) {
+            if (fanSpeed < 1 || fanSpeed > 5) {
                 System.out.println("Velocitat invàlida. Ha de ser entre 1 i 5.");
             } else {
                 System.out.println("Ventilador ON ==> velocitat " + fanSpeed);
@@ -472,7 +534,7 @@ public class app {
         System.out.println("Cuina: llums " + (kitchen ? "ON" : "OFF"));
         System.out.println("Lavabo: llums " + (bathroom ? "ON" : "OFF"));
         System.out.println("Habitació 1: llums " + (bedroom1 ? "ON" : "OFF"));
-        System.out.println("Calefacció: " + (temperatureON ? "ON (" + temperature + "ºC)" : "OFF"));
+        System.out.println("Calefacció: " + (speed_ON ? "ON (" + speed + "ºC)" : "OFF"));
         System.out.println("Finestres: " + (blinds_ON ? "OBERTES (" + blinds + "%)" : "TANCADES"));
         System.out.println("Ventilador: " + (fan_ON ? "ON (velocitat " + fanSpeed + ")" : "OFF"));
     }
