@@ -39,14 +39,15 @@ public class app {
         Scanner scanner = new Scanner(System.in);
         int menuOption = 0;
 
-        do { // bucle principal
-             // MENÚ PRINCIPAL
+        do {
+            // MENÚ PRINCIPAL
             System.out.println("============ MENÚ ============");
             System.out.println("1- Llums");
             System.out.println("2- Calefacció");
             System.out.println("3- Finestres");
             System.out.println("4- Ventilador");
-            System.out.println("5- Sortir");
+            System.out.println("5- Estas de general");
+            System.out.println("0- Sortir");
             System.out.print("Escull una opció (1-5): ");
 
             menuOption = scanner.nextInt();
@@ -63,7 +64,9 @@ public class app {
             } else if (menuOption == 4) { // Finestres
                 fan(scanner);
 
-            } else if (menuOption == 5) { // Sortir del programa
+            } else if (menuOption == 5) {
+
+            } else if (menuOption == 0) { // Sortir del programa
 
             } else {
                 System.out.println("Opció invàlida. Torna-ho a intentar.");
@@ -71,77 +74,81 @@ public class app {
 
         } while (menuOption != 5);
 
+        general_Status(scanner);
+
         scanner.close();
     }
 
     // LLUMS
     public static void lightsRooms(Scanner scanner) {
 
-        // Menu de les llums
-        light_Menu();
+        do {
+            // Menu de les llums
+            light_Menu();
 
-        System.out.print("Selecciona una habitació: ");
+            System.out.print("Selecciona una habitació: ");
 
-        roomOption = scanner.nextInt();
-        if (roomOption >= 1 && roomOption <= 6) { // Opcions de les llums de les habitacions
-            System.out.println("1- Llums ON");
-            System.out.println("2- Llums OFF");
+            roomOption = scanner.nextInt();
+            if (roomOption >= 1 && roomOption <= 6) { // Opcions de les llums de les habitacions
+                System.out.println("1- Llums ON");
+                System.out.println("2- Llums OFF");
 
-            System.out.print("Selecciona una opció: ");
-            int lightOption = scanner.nextInt();
+                System.out.print("Selecciona una opció: ");
+                int lightOption = scanner.nextInt();
 
-            // Switch per saber quines llums encenem o apaguem
-            switch (roomOption) {
-                case 1: // Menjador
-                    livingRoom = (lightOption == 1);
-                    light_ON_OFF();
-                    break;
+                // Switch per saber quines llums encenem o apaguem
+                switch (roomOption) {
+                    case 1: // Menjador
+                        livingRoom = (lightOption == 1);
+                        light_ON_OFF();
+                        break;
 
-                case 2: // Cuina
-                    kitchen = (lightOption == 1);
-                    light_ON_OFF();
-                    break;
+                    case 2: // Cuina
+                        kitchen = (lightOption == 1);
+                        light_ON_OFF();
+                        break;
 
-                case 3: // Lavabo
-                    bathroom = (lightOption == 1);
-                    light_ON_OFF();
-                    break;
+                    case 3: // Lavabo
+                        bathroom = (lightOption == 1);
+                        light_ON_OFF();
+                        break;
 
-                case 4: // Habitació 1
-                    bedroom1 = (lightOption == 1);
-                    light_ON_OFF();
-                    break;
+                    case 4: // Habitació 1
+                        bedroom1 = (lightOption == 1);
+                        light_ON_OFF();
+                        break;
 
-                case 5: // Habitació 2
-                    bedroom2 = (lightOption == 1);
-                    light_ON_OFF();
-                    break;
+                    case 5: // Habitació 2
+                        bedroom2 = (lightOption == 1);
+                        light_ON_OFF();
+                        break;
 
-                case 6: // Habitació 3
-                    bedroom3 = (lightOption == 1);
-                    light_ON_OFF();
-                    break;
+                    case 6: // Habitació 3
+                        bedroom3 = (lightOption == 1);
+                        light_ON_OFF();
+                        break;
+                }
+
+            } else if (roomOption == 7) {
+                System.out.println("Tornant al menú principal...");
+            } else {
+                System.out.println("Opció invàlida.");
             }
 
-        } else if (roomOption == 7) {
-            System.out.println("Tornant al menú principal...");
-        } else {
-            System.out.println("Opció invàlida.");
-        }
+        } while (roomOption != 7);
+
     }
 
     private static void light_Menu() {
-        do {
-            System.out.println("===== SELECCIONA L'HABITACIÓ =====");
-            System.out.println("1- Menjador");
-            System.out.println("2- Cuina");
-            System.out.println("3- Lavabo");
-            System.out.println("4- Habitació 1");
-            System.out.println("5- Habitació 2");
-            System.out.println("6- Habitació 3");
-            System.out.println("7- Tornar al menú principal");
 
-        } while (menu_Select_Room != 7);
+        System.out.println("===== SELECCIONA L'HABITACIÓ =====");
+        System.out.println("1- Menjador");
+        System.out.println("2- Cuina");
+        System.out.println("3- Lavabo");
+        System.out.println("4- Habitació 1");
+        System.out.println("5- Habitació 2");
+        System.out.println("6- Habitació 3");
+        System.out.println("7- Tornar al menú principal");
 
     }
 
@@ -157,43 +164,98 @@ public class app {
     // CALEFACCIÓ
     public static void temperature(Scanner scanner) {
 
-        menu_Temperature();
-        System.out.print("Selecciona una opció: ");
+        do {
+            menu_Temperature();
+            System.out.print("Selecciona una opció: ");
 
-        int temperatureOptions = scanner.nextInt();
+            int temperatureOptions = scanner.nextInt();
 
-        if (temperatureOptions == 1) { // SI la temperatura està encesa demana emperatura
-            System.out.print("Introdueix la temperatura: ");
-            temperature = scanner.nextDouble();
-            temperatureON = true;
-            System.out.println("Calefacció ON ==> temperatura a " + temperature);
+            if (temperatureOptions == 1) { // SI la temperatura està encesa demana emperatura
+                System.out.print("Introdueix la temperatura (entre 10 i 30 ºC): ");
+                temperature = scanner.nextDouble();
+                temperatureON = true;
 
-        } else if (temperatureOptions == 2) {
-            temperatureON = false;
-            System.out.println("Calefacció OFF");
+                // Bucle per demana temperatura adecuada
+                bucle_Request_Temperature(scanner);
 
-        } else if (temperatureOptions == 3) { // Mostra l'estat de la calefació
-            show_Climate_Temperature();
+                System.out.println("Calefacció ON ==> temperatura a " + temperature);
 
-        } else if (temperatureOptions == 4) {
-            System.out.println("Tornant al menú principal...");
+            } else if (temperatureOptions == 2) {
+                temperatureON = false;
+                System.out.println("Calefacció OFF");
 
-        } else {
-            System.out.println("Opció invàlida.");
-        }
+            } else if (temperatureOptions == 3) { // Mostra l'estat de la calefació
+                show_Climate_Temperature();
+
+            } else if (temperatureOptions == 4) {
+                set_heating_time(scanner);
+
+            } else if (temperatureOptions == 5) {
+                System.out.println("Tornant al menú principal...");
+
+            } else {
+                System.out.println("Opció invàlida.");
+            }
+
+        } while (menu_Temperature != 4);
 
     }
 
-    public static void menu_Temperature() {
-        do{
-            System.out.println("===== MENÚ CALEFACCIÓ =====");
-            System.out.println("1- Encendre calefacció");
-            System.out.println("2- Apagar calefacció");
-            System.out.println("3- Mostrar estat");
-            System.out.println("4- Tornar al menú principal");
+    public static void bucle_Request_Temperature(Scanner scanner) {
+        while (temperature <= 10 || temperature >= 30) {
+            System.out.println("Temperatura invàlida. Ha de ser entre 10 i 30 ºC.");
+            System.out.print("Introdueix una temperatura vàlida: ");
+            temperature = scanner.nextDouble();
+        }
+    }
 
-        } while (menu_Temperature != 4);
-        
+    public static void menu_Temperature() {
+
+        System.out.println("===== MENÚ CALEFACCIÓ =====");
+        System.out.println("1- Encendre calefacció");
+        System.out.println("2- Apagar calefacció");
+        System.out.println("3- Mostrar estat");
+        System.out.println("4- Programar calefacció");
+        System.out.println("5- Tornar al menú principal");
+
+    }
+
+    public static void set_heating_time(Scanner scanner) {
+        int time_Schedule;
+        do {
+            System.out.print("Vols programar la calefacció per alguna hora? 1-Sí, 2-No");
+            time_Schedule = scanner.nextInt();
+
+            if (time_Schedule == 1) {
+                System.out.print("A quina hora vols que s'encengui la calefacció? (0-23): ");
+                int horaProg = scanner.nextInt();
+
+                // Validació simple
+                while (horaProg < 0 || horaProg > 23) {
+                    System.out.print("Hora invàlida. Torna a introduir-la (0-23): ");
+                    horaProg = scanner.nextInt();
+                }
+
+                System.out.print("Quina temperatura vols programar? (10-30 ºC): ");
+                int tempProg = scanner.nextInt();
+                while (tempProg < 10 || tempProg > 30) {
+                    System.out.print("Temperatura invàlida. Torna a introduir-la (10-30 ºC): ");
+                    tempProg = scanner.nextInt();
+                }
+                System.out.println("===================HORA PROGRAMADA CALEFACCIÓ===================");
+                System.out.println("Calefacció programada a les " + horaProg + ":00 a " + tempProg + "ºC");
+
+                // Bucle que simula el “pas del temps” de 0 a 23 hores
+                for (int hora = 0; hora < 24; hora++) {
+                    if (hora == horaProg) {
+                        temperatureON = true;
+                        temperature = tempProg;
+                        System.out.println("Automàtic: Calefacció ON a " + temperature + "ºC a les " + hora + ":00");
+                    }
+                }
+            }
+
+        } while (time_Schedule != 2);
     }
 
     public static void show_Climate_Temperature() {
@@ -208,72 +270,73 @@ public class app {
     // FINESTRES
     public static void blinds(Scanner scanner) {
 
-        blinds_Menu();
+        do {
+            blinds_Menu();
 
-        System.out.print("Selecciona una habitació: ");
+            System.out.print("Selecciona una habitació: ");
 
-        blind_Room_Option = scanner.nextInt();
-        if (blind_Room_Option >= 1 && blind_Room_Option <= 6) { // Opcions de les llums de les habitacions
-            System.out.println("1- Finestres ON");
-            System.out.println("2- Finestres OFF");
+            blind_Room_Option = scanner.nextInt();
+            if (blind_Room_Option >= 1 && blind_Room_Option <= 6) { // Opcions de les llums de les habitacions
+                System.out.println("1- Finestres ON");
+                System.out.println("2- Finestres OFF");
 
-            System.out.print("Selecciona una opció: ");
-            blind_Option = scanner.nextInt();
+                System.out.print("Selecciona una opció: ");
+                blind_Option = scanner.nextInt();
 
-            // Switch per saber quines llums encenem o apaguem
-            switch (blind_Room_Option) {
-                case 1: // Menjador
-                    livingRoom = (blind_Option == 1);
-                    blinds_ON_OFF();
-                    break;
+                // Switch per saber quines llums encenem o apaguem
+                switch (blind_Room_Option) {
+                    case 1: // Menjador
+                        livingRoom = (blind_Option == 1);
+                        blinds_ON_OFF();
+                        break;
 
-                case 2: // Cuina
-                    kitchen = (blind_Option == 1);
-                    blinds_ON_OFF();
-                    break;
+                    case 2: // Cuina
+                        kitchen = (blind_Option == 1);
+                        blinds_ON_OFF();
+                        break;
 
-                case 3: // Lavabo
-                    bathroom = (blind_Option == 1);
-                    blinds_ON_OFF();
-                    break;
+                    case 3: // Lavabo
+                        bathroom = (blind_Option == 1);
+                        blinds_ON_OFF();
+                        break;
 
-                case 4: // Habitació 1
-                    bedroom1 = (blind_Option == 1);
-                    blinds_ON_OFF();
-                    break;
+                    case 4: // Habitació 1
+                        bedroom1 = (blind_Option == 1);
+                        blinds_ON_OFF();
+                        break;
 
-                case 5: // Habitació 2
-                    bedroom2 = (blind_Option == 1);
-                    blinds_ON_OFF();
-                    break;
+                    case 5: // Habitació 2
+                        bedroom2 = (blind_Option == 1);
+                        blinds_ON_OFF();
+                        break;
 
-                case 6: // Habitació 3
-                    bedroom3 = (blind_Option == 1);
-                    blinds_ON_OFF();
-                    break;
+                    case 6: // Habitació 3
+                        bedroom3 = (blind_Option == 1);
+                        blinds_ON_OFF();
+                        break;
+                }
+
+                get_Status_Blinds(scanner);
+
+            } else if (blind_Room_Option == 7) {
+                System.out.println("Tornant al menú principal...");
+            } else {
+                System.out.println("Opció invàlida.");
             }
+        } while (blind_Room_Option != 7);
 
-            get_Status_Blinds(scanner);
-
-        } else if (blind_Room_Option == 7) {
-            System.out.println("Tornant al menú principal...");
-        } else {
-            System.out.println("Opció invàlida.");
-        }
     }
 
     public static void blinds_Menu() {
-        do {
-            System.out.println("===== SELECCIONA L'HABITACIÓ =====");
-            System.out.println("1- Menjador");
-            System.out.println("2- Cuina");
-            System.out.println("3- Lavabo");
-            System.out.println("4- Habitació 1");
-            System.out.println("5- Habitació 2");
-            System.out.println("6- Habitació 3");
-            System.out.println("7- Tornar al menú principal");
 
-        } while (menu_Select_Room != 7);
+        System.out.println("===== SELECCIONA L'HABITACIÓ =====");
+        System.out.println("1- Menjador");
+        System.out.println("2- Cuina");
+        System.out.println("3- Lavabo");
+        System.out.println("4- Habitació 1");
+        System.out.println("5- Habitació 2");
+        System.out.println("6- Habitació 3");
+        System.out.println("7- Tornar al menú principal");
     }
 
     public static void get_Status_Blinds(Scanner scanner) {
@@ -310,72 +373,72 @@ public class app {
     // VENTILADOR
     public static void fan(Scanner scanner) {
 
-        fan_Menu();
+        do {
+            fan_Menu();
 
-        System.out.print("Selecciona una habitació: ");
-        fan_Room_Option = scanner.nextInt();
+            System.out.print("Selecciona una habitació: ");
+            fan_Room_Option = scanner.nextInt();
 
-        if (fan_Room_Option >= 1 && fan_Room_Option <= 6) {
-            System.out.println("1- Ventilador ON");
-            System.out.println("2- Ventilador OFF");
+            if (fan_Room_Option >= 1 && fan_Room_Option <= 6) {
+                System.out.println("1- Ventilador ON");
+                System.out.println("2- Ventilador OFF");
 
-            System.out.print("Selecciona una opció: ");
-            fan_Option = scanner.nextInt();
+                System.out.print("Selecciona una opció: ");
+                fan_Option = scanner.nextInt();
 
-            // Switch per saber quin ventilador encenem o apaguem
-            switch (fan_Room_Option) {
-                case 1: // Menjador
-                    livingRoom = (fan_Option == 1);
-                    fan_ON_OFF();
-                    break;
+                // Switch per saber quin ventilador encenem o apaguem
+                switch (fan_Room_Option) {
+                    case 1: // Menjador
+                        livingRoom = (fan_Option == 1);
+                        fan_ON_OFF();
+                        break;
 
-                case 2: // Cuina
-                    kitchen = (fan_Option == 1);
-                    fan_ON_OFF();
-                    break;
+                    case 2: // Cuina
+                        kitchen = (fan_Option == 1);
+                        fan_ON_OFF();
+                        break;
 
-                case 3: // Lavabo
-                    bathroom = (fan_Option == 1);
-                    fan_ON_OFF();
-                    break;
+                    case 3: // Lavabo
+                        bathroom = (fan_Option == 1);
+                        fan_ON_OFF();
+                        break;
 
-                case 4: // Habitació 1
-                    bedroom1 = (fan_Option == 1);
-                    fan_ON_OFF();
-                    break;
+                    case 4: // Habitació 1
+                        bedroom1 = (fan_Option == 1);
+                        fan_ON_OFF();
+                        break;
 
-                case 5: // Habitació 2
-                    bedroom2 = (fan_Option == 1);
-                    fan_ON_OFF();
-                    break;
+                    case 5: // Habitació 2
+                        bedroom2 = (fan_Option == 1);
+                        fan_ON_OFF();
+                        break;
 
-                case 6: // Habitació 3
-                    bedroom3 = (fan_Option == 1);
-                    fan_ON_OFF();
-                    break;
+                    case 6: // Habitació 3
+                        bedroom3 = (fan_Option == 1);
+                        fan_ON_OFF();
+                        break;
+                }
+
+                get_Status_Fan(scanner);
+
+            } else if (fan_Room_Option == 7) {
+                System.out.println("Tornant al menú principal...");
+            } else {
+                System.out.println("Opció invàlida.");
             }
-
-            get_Status_Fan(scanner);
-
-        } else if (fan_Room_Option == 7) {
-            System.out.println("Tornant al menú principal...");
-        } else {
-            System.out.println("Opció invàlida.");
-        }
+        } while (fan_Room_Option != 7);
     }
 
     public static void fan_Menu() {
-        do {
-            System.out.println("===== SELECCIONA L'HABITACIÓ =====");
-            System.out.println("1- Menjador");
-            System.out.println("2- Cuina");
-            System.out.println("3- Lavabo");
-            System.out.println("4- Habitació 1");
-            System.out.println("5- Habitació 2");
-            System.out.println("6- Habitació 3");
-            System.out.println("7- Tornar al menú principal");
 
-        } while (menu_Select_Room != 7);
+        System.out.println("===== SELECCIONA L'HABITACIÓ =====");
+        System.out.println("1- Menjador");
+        System.out.println("2- Cuina");
+        System.out.println("3- Lavabo");
+        System.out.println("4- Habitació 1");
+        System.out.println("5- Habitació 2");
+        System.out.println("6- Habitació 3");
+        System.out.println("7- Tornar al menú principal");
     }
 
     public static void get_Status_Fan(Scanner scanner) {
@@ -401,6 +464,17 @@ public class app {
         } else {
             System.out.println("Ventilador de l'habitació " + fan_Room_Option + ": OFF");
         }
+    }
+
+    public static void general_Status(Scanner scanner) {
+        System.out.println("===== ESTAT GENERAL DE LA CASA =====");
+        System.out.println("Menjador: llums " + (livingRoom ? "ON" : "OFF"));
+        System.out.println("Cuina: llums " + (kitchen ? "ON" : "OFF"));
+        System.out.println("Lavabo: llums " + (bathroom ? "ON" : "OFF"));
+        System.out.println("Habitació 1: llums " + (bedroom1 ? "ON" : "OFF"));
+        System.out.println("Calefacció: " + (temperatureON ? "ON (" + temperature + "ºC)" : "OFF"));
+        System.out.println("Finestres: " + (blinds_ON ? "OBERTES (" + blinds + "%)" : "TANCADES"));
+        System.out.println("Ventilador: " + (fan_ON ? "ON (velocitat " + fanSpeed + ")" : "OFF"));
     }
 
 }
