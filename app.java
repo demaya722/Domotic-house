@@ -10,6 +10,10 @@ public class app {
     static boolean bedroom2;
     static boolean bedroom3;
 
+    // Variables per menus do whail
+    static int menu_Select_Room;
+    static int menu_Temperature;
+
     // Llums
     static int lightOption;
     static int roomOption;
@@ -24,13 +28,11 @@ public class app {
     static boolean blinds_ON;
     static double blinds = 0.0;
 
-    //  Ventilador
+    // Ventilador
     static int fan_Room_Option;
     static int fan_Option;
     static boolean fan_ON;
     static int fanSpeed = 0;
-
-
 
     public static void main(String[] args) {
 
@@ -76,7 +78,7 @@ public class app {
     public static void lightsRooms(Scanner scanner) {
 
         // Menu de les llums
-        light_Menu(); 
+        light_Menu();
 
         System.out.print("Selecciona una habitació: ");
 
@@ -92,32 +94,32 @@ public class app {
             switch (roomOption) {
                 case 1: // Menjador
                     livingRoom = (lightOption == 1);
-                    light_ON_OFF(); 
+                    light_ON_OFF();
                     break;
 
                 case 2: // Cuina
                     kitchen = (lightOption == 1);
-                    light_ON_OFF(); 
+                    light_ON_OFF();
                     break;
 
                 case 3: // Lavabo
                     bathroom = (lightOption == 1);
-                    light_ON_OFF(); 
+                    light_ON_OFF();
                     break;
 
                 case 4: // Habitació 1
                     bedroom1 = (lightOption == 1);
-                    light_ON_OFF(); 
+                    light_ON_OFF();
                     break;
 
                 case 5: // Habitació 2
                     bedroom2 = (lightOption == 1);
-                    light_ON_OFF(); 
+                    light_ON_OFF();
                     break;
 
                 case 6: // Habitació 3
                     bedroom3 = (lightOption == 1);
-                    light_ON_OFF(); 
+                    light_ON_OFF();
                     break;
             }
 
@@ -129,14 +131,18 @@ public class app {
     }
 
     private static void light_Menu() {
-        System.out.println("===== SELECCIONA L'HABITACIÓ =====");
-        System.out.println("1- Menjador");
-        System.out.println("2- Cuina");
-        System.out.println("3- Lavabo");
-        System.out.println("4- Habitació 1");
-        System.out.println("5- Habitació 2");
-        System.out.println("6- Habitació 3");
-        System.out.println("7- Tornar al menú principal");
+        do {
+            System.out.println("===== SELECCIONA L'HABITACIÓ =====");
+            System.out.println("1- Menjador");
+            System.out.println("2- Cuina");
+            System.out.println("3- Lavabo");
+            System.out.println("4- Habitació 1");
+            System.out.println("5- Habitació 2");
+            System.out.println("6- Habitació 3");
+            System.out.println("7- Tornar al menú principal");
+
+        } while (menu_Select_Room != 7);
+
     }
 
     public static void light_ON_OFF() {
@@ -175,19 +181,23 @@ public class app {
         } else {
             System.out.println("Opció invàlida.");
         }
-        
+
     }
 
     public static void menu_Temperature() {
-        System.out.println("===== MENÚ CALEFACCIÓ =====");
-        System.out.println("1- Encendre calefacció");
-        System.out.println("2- Apagar calefacció");
-        System.out.println("3- Mostrar estat");
-        System.out.println("4- Tornar al menú principal");
+        do{
+            System.out.println("===== MENÚ CALEFACCIÓ =====");
+            System.out.println("1- Encendre calefacció");
+            System.out.println("2- Apagar calefacció");
+            System.out.println("3- Mostrar estat");
+            System.out.println("4- Tornar al menú principal");
+
+        } while (menu_Temperature != 4);
+        
     }
 
     public static void show_Climate_Temperature() {
-        
+
         if (temperatureON) {
             System.out.println("La calefacció ON a " + temperature);
         } else {
@@ -196,7 +206,7 @@ public class app {
     }
 
     // FINESTRES
-    public static void blinds(Scanner scanner){
+    public static void blinds(Scanner scanner) {
 
         blinds_Menu();
 
@@ -252,18 +262,21 @@ public class app {
         }
     }
 
-    public static void blinds_Menu(){
-        System.out.println("===== SELECCIONA L'HABITACIÓ =====");
-        System.out.println("1- Menjador");
-        System.out.println("2- Cuina");
-        System.out.println("3- Lavabo");
-        System.out.println("4- Habitació 1");
-        System.out.println("5- Habitació 2");
-        System.out.println("6- Habitació 3");
-        System.out.println("7- Tornar al menú principal");
+    public static void blinds_Menu() {
+        do {
+            System.out.println("===== SELECCIONA L'HABITACIÓ =====");
+            System.out.println("1- Menjador");
+            System.out.println("2- Cuina");
+            System.out.println("3- Lavabo");
+            System.out.println("4- Habitació 1");
+            System.out.println("5- Habitació 2");
+            System.out.println("6- Habitació 3");
+            System.out.println("7- Tornar al menú principal");
+
+        } while (menu_Select_Room != 7);
     }
 
-    public static void get_Status_Blinds(Scanner scanner){
+    public static void get_Status_Blinds(Scanner scanner) {
         if (blind_Room_Option == 1) { // SI la temperatura està encesa demana emperatura
             System.out.print("Introdueix la l'altura de la finestres (0 - 100%): ");
             blinds = scanner.nextDouble();
@@ -297,72 +310,75 @@ public class app {
     // VENTILADOR
     public static void fan(Scanner scanner) {
 
-    fan_Menu();
+        fan_Menu();
 
-    System.out.print("Selecciona una habitació: ");
-    fan_Room_Option = scanner.nextInt();
+        System.out.print("Selecciona una habitació: ");
+        fan_Room_Option = scanner.nextInt();
 
-    if (fan_Room_Option >= 1 && fan_Room_Option <= 6) {
-        System.out.println("1- Ventilador ON");
-        System.out.println("2- Ventilador OFF");
+        if (fan_Room_Option >= 1 && fan_Room_Option <= 6) {
+            System.out.println("1- Ventilador ON");
+            System.out.println("2- Ventilador OFF");
 
-        System.out.print("Selecciona una opció: ");
-        fan_Option = scanner.nextInt();
+            System.out.print("Selecciona una opció: ");
+            fan_Option = scanner.nextInt();
 
-        // Switch per saber quin ventilador encenem o apaguem
-        switch (fan_Room_Option) {
-            case 1: // Menjador
-                livingRoom = (fan_Option == 1);
-                fan_ON_OFF();
-                break;
+            // Switch per saber quin ventilador encenem o apaguem
+            switch (fan_Room_Option) {
+                case 1: // Menjador
+                    livingRoom = (fan_Option == 1);
+                    fan_ON_OFF();
+                    break;
 
-            case 2: // Cuina
-                kitchen = (fan_Option == 1);
-                fan_ON_OFF();
-                break;
+                case 2: // Cuina
+                    kitchen = (fan_Option == 1);
+                    fan_ON_OFF();
+                    break;
 
-            case 3: // Lavabo
-                bathroom = (fan_Option == 1);
-                fan_ON_OFF();
-                break;
+                case 3: // Lavabo
+                    bathroom = (fan_Option == 1);
+                    fan_ON_OFF();
+                    break;
 
-            case 4: // Habitació 1
-                bedroom1 = (fan_Option == 1);
-                fan_ON_OFF();
-                break;
+                case 4: // Habitació 1
+                    bedroom1 = (fan_Option == 1);
+                    fan_ON_OFF();
+                    break;
 
-            case 5: // Habitació 2
-                bedroom2 = (fan_Option == 1);
-                fan_ON_OFF();
-                break;
+                case 5: // Habitació 2
+                    bedroom2 = (fan_Option == 1);
+                    fan_ON_OFF();
+                    break;
 
-            case 6: // Habitació 3
-                bedroom3 = (fan_Option == 1);
-                fan_ON_OFF();
-                break;
+                case 6: // Habitació 3
+                    bedroom3 = (fan_Option == 1);
+                    fan_ON_OFF();
+                    break;
+            }
+
+            get_Status_Fan(scanner);
+
+        } else if (fan_Room_Option == 7) {
+            System.out.println("Tornant al menú principal...");
+        } else {
+            System.out.println("Opció invàlida.");
         }
-
-        get_Status_Fan(scanner);
-
-    } else if (fan_Room_Option == 7) {
-        System.out.println("Tornant al menú principal...");
-    } else {
-        System.out.println("Opció invàlida.");
-    }
-}
-
-    public static void fan_Menu(){
-        System.out.println("===== SELECCIONA L'HABITACIÓ =====");
-        System.out.println("1- Menjador");
-        System.out.println("2- Cuina");
-        System.out.println("3- Lavabo");
-        System.out.println("4- Habitació 1");
-        System.out.println("5- Habitació 2");
-        System.out.println("6- Habitació 3");
-        System.out.println("7- Tornar al menú principal");
     }
 
-    public static void get_Status_Fan(Scanner scanner){
+    public static void fan_Menu() {
+        do {
+            System.out.println("===== SELECCIONA L'HABITACIÓ =====");
+            System.out.println("1- Menjador");
+            System.out.println("2- Cuina");
+            System.out.println("3- Lavabo");
+            System.out.println("4- Habitació 1");
+            System.out.println("5- Habitació 2");
+            System.out.println("6- Habitació 3");
+            System.out.println("7- Tornar al menú principal");
+
+        } while (menu_Select_Room != 7);
+    }
+
+    public static void get_Status_Fan(Scanner scanner) {
         if (fan_Option == 1) {
             System.out.print("Introdueix la velocitat del ventilador (1 - 5): ");
             fanSpeed = scanner.nextInt();
@@ -387,6 +403,4 @@ public class app {
         }
     }
 
-
 }
-
