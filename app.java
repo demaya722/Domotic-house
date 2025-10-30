@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class app {
+    static Scanner scanner;
 
     // VARIABLES GLOBALS
     static boolean livingRoom;
@@ -32,13 +33,11 @@ public class app {
     static int fan_Room_Option;
     static int fan_Option;
     static boolean fan_ON;
-    static int fanSpeed = 0;
-
-
+    static int fan_Speed = 0;
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         int menuOption = 0;
 
         do {
@@ -48,14 +47,13 @@ public class app {
             System.out.println("2- Calefacció");
             System.out.println("3- Finestres");
             System.out.println("4- Ventilador");
-            System.out.println("5- Estas de general");
             System.out.println("0- Sortir");
             System.out.print("Escull una opció (1-5): ");
 
             menuOption = scanner.nextInt();
 
             if (menuOption == 1) { // Llums
-                lightsRooms(scanner);
+                lightsRooms();
 
             } else if (menuOption == 2) { // Temperatura
                 temperature(scanner);
@@ -66,8 +64,6 @@ public class app {
             } else if (menuOption == 4) { // Finestres
                 fan(scanner);
 
-            } else if (menuOption == 5) {
-
             } else if (menuOption == 0) { // Sortir del programa
 
             } else {
@@ -76,13 +72,11 @@ public class app {
 
         } while (menuOption != 5);
 
-        general_Status(scanner);
-
         scanner.close();
     }
 
     // LLUMS
-    public static void lightsRooms(Scanner scanner) {
+    public static void lightsRooms() {
 
         do {
             // Menu de les llums
@@ -403,31 +397,37 @@ public class app {
                 switch (fan_Room_Option) {
                     case 1: // Menjador
                         livingRoom = (fan_Option == 1);
+                        program_Fan(scanner);
                         fan_ON_OFF();
                         break;
 
                     case 2: // Cuina
                         kitchen = (fan_Option == 1);
+                        program_Fan(scanner);
                         fan_ON_OFF();
                         break;
 
                     case 3: // Lavabo
                         bathroom = (fan_Option == 1);
+                        program_Fan(scanner);
                         fan_ON_OFF();
                         break;
 
                     case 4: // Habitació 1
                         bedroom1 = (fan_Option == 1);
+                        program_Fan(scanner);
                         fan_ON_OFF();
                         break;
 
                     case 5: // Habitació 2
                         bedroom2 = (fan_Option == 1);
+                        program_Fan(scanner);
                         fan_ON_OFF();
                         break;
 
                     case 6: // Habitació 3
                         bedroom3 = (fan_Option == 1);
+                        program_Fan(scanner);
                         fan_ON_OFF();
                         break;
                 }
@@ -476,31 +476,63 @@ public class app {
     }
 
     public static void fun_Time(Scanner scanner) {
-        System.out.print("A quina hora vols que s'encengui el ventilador? (0-23): ");
-        int time_Prog = scanner.nextInt();
-
-        while (time_Prog < 0 || time_Prog > 23) {
-            System.out.print("Hora invàlida. Torna a introduir-la (0-23): ");
-            time_Prog = scanner.nextInt();
-        }
-
-        System.out.print("Quina velocitat vols programar? (1 - 5): ");
-        int speed_Prog = scanner.nextInt();
-        while (speed_Prog < 1 || speed_Prog > 5) {
-            System.out.print("Velocitat invàlida. Torna a introduir-la (1 - 5): ");
-            speed_Prog = scanner.nextInt();
-        }
+        int time_Prog = bucle_Fun_time();
+        
+        int speed_Prog = bucle_Fun_Speed(scanner);
 
         System.out.println("===================HORA PROGRAMADA VENTILADOR===================");
         System.out.println("Ventilador programat a les " + time_Prog + ":00 a velocitat " + speed_Prog);
 
+        time_clock_Fun(time_Prog, speed_Prog);
+    }
+
+    private static int bucle_Fun_time() {
+        boolean bucle_Fun = true;
+        int time_Prog = -1;
+
+        do {
+            System.out.print("A quina hora vols que s'encengui el ventilador? (0-23): ");
+            time_Prog = scanner.nextInt();
+
+            if (time_Prog < 0 || time_Prog > 23) {
+                System.out.print("Hora invàlida. ");
+            } else {
+                bucle_Fun = false;
+            }
+        } while (bucle_Fun);
+        
+        return time_Prog;
+    }
+
+    private static int bucle_Fun_Speed(Scanner scanner) {
+        boolean bucle_Fun_Speed;
+        bucle_Fun_Speed = true;
+        int speed_Prog = -1;
+
+        do{
+            System.out.print("Quina velocitat vols programar? (1 - 5): ");
+            speed_Prog = scanner.nextInt();
+
+        if (speed_Prog < 1 || speed_Prog > 5) {
+            System.out.print("Velocitat invàlida. Torna a introduir-la (1 - 5): ");
+            speed_Prog = scanner.nextInt();
+        } else{
+            bucle_Fun_Speed = false;
+        }
+        }while (bucle_Fun_Speed);
+        return speed_Prog;
+    }
+
+    private static void time_clock_Fun(int time_Prog, int speed_Prog) {
         // Bucle que simula el pas del temps de 0 a 23 hores
         for (int timeClock = 0; timeClock < 24; timeClock++) {
             if (timeClock == time_Prog) {
                 fan_ON = true;
-                fanSpeed = speed_Prog;
+                int fanSpeed = speed_Prog;
                 System.out.println("Automàtic: Ventilador ON a velocitat " + fanSpeed + " a les " + timeClock + ":00");
                 System.out.println("================================================================");
+            } else {
+                fan_ON = false;
             }
         }
     }
@@ -508,7 +540,7 @@ public class app {
     public static void get_Status_Fan(Scanner scanner) {
         if (fan_Option == 1) {
             System.out.print("Introdueix la velocitat del ventilador (1 - 5): ");
-            fanSpeed = scanner.nextInt();
+            int fanSpeed = scanner.nextInt();
 
             if (fanSpeed < 1 || fanSpeed > 5) {
                 System.out.println("Velocitat invàlida. Ha de ser entre 1 i 5.");
@@ -528,17 +560,6 @@ public class app {
         } else {
             System.out.println("Ventilador de l'habitació " + fan_Room_Option + ": OFF");
         }
-    }
-
-    public static void general_Status(Scanner scanner) {
-        System.out.println("===== ESTAT GENERAL DE LA CASA =====");
-        System.out.println("Menjador: llums " + (livingRoom ? "ON" : "OFF"));
-        System.out.println("Cuina: llums " + (kitchen ? "ON" : "OFF"));
-        System.out.println("Lavabo: llums " + (bathroom ? "ON" : "OFF"));
-        System.out.println("Habitació 1: llums " + (bedroom1 ? "ON" : "OFF"));
-        System.out.println("Calefacció: " + (speed_ON ? "ON (" + speed + "ºC)" : "OFF"));
-        System.out.println("Finestres: " + (blinds_ON ? "OBERTES (" + blinds + "%)" : "TANCADES"));
-        System.out.println("Ventilador: " + (fan_ON ? "ON (velocitat " + fanSpeed + ")" : "OFF"));
     }
 
 }
