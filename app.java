@@ -34,6 +34,8 @@ public class app {
     static boolean fan_ON;
     static int fanSpeed = 0;
 
+
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -230,22 +232,22 @@ public class app {
 
             time_Schedule = scanner.nextInt();
 
-            if_Heating_Time(scanner);
+            temperature_Time(scanner);
 
         } while (time_Schedule != 2);
     }
 
-    public static void if_Heating_Time(Scanner scanner) {
+    public static void temperature_Time(Scanner scanner) {
         int time_Schedule = scanner.nextInt();
 
         if (time_Schedule == 1) {
             System.out.print("A quina hora vols que s'encengui la calefacció? (0-23): ");
-            int horaProg = scanner.nextInt();
+            int timeProg = scanner.nextInt();
 
-            // Validació simple
-            while (horaProg < 0 || horaProg > 23) {
+            // Validació de l'hora
+            while (timeProg < 0 || timeProg > 23) {
                 System.out.print("Hora invàlida. Torna a introduir-la (0-23): ");
-                horaProg = scanner.nextInt();
+                timeProg = scanner.nextInt();
             }
 
             System.out.print("Quina temperatura vols programar? (10-30 ºC): ");
@@ -255,14 +257,14 @@ public class app {
                 tempProg = scanner.nextInt();
             }
             System.out.println("===================HORA PROGRAMADA CALEFACCIÓ===================");
-            System.out.println("Calefacció programada a les " + horaProg + ":00 a " + tempProg + "ºC");
+            System.out.println("Calefacció programada a les " + timeProg + ":00 a " + tempProg + "ºC");
 
             // Bucle que simula el “pas del temps” de 0 a 23 hores
-            for (int hora = 0; hora < 24; hora++) {
-                if (hora == horaProg) {
+            for (int timeClock = 0; timeClock < 24; timeClock++) {
+                if (timeClock == timeProg) {
                     speed_ON = true;
                     speed = tempProg;
-                    System.out.println("Automàtic: Calefacció ON a " + speed + "ºC a les " + hora + ":00");
+                    System.out.println("Automàtic: Calefacció ON a " + speed + "ºC a les " + timeClock + ":00");
                     System.out.println("=========================================================================");
                 }
             }
@@ -467,19 +469,19 @@ public class app {
             time_Fun = scanner.nextInt();
 
             if (time_Fun == 1) {
-                if_Fun_Time(scanner); // llamamos a la función para programar hora y velocidad
+                fun_Time(scanner); // llamamos a la función para programar hora y velocidad
             }
 
         } while (time_Fun != 2);
     }
 
-    public static void if_Fun_Time(Scanner scanner) {
+    public static void fun_Time(Scanner scanner) {
         System.out.print("A quina hora vols que s'encengui el ventilador? (0-23): ");
-        int hora_Prog = scanner.nextInt();
+        int time_Prog = scanner.nextInt();
 
-        while (hora_Prog < 0 || hora_Prog > 23) {
+        while (time_Prog < 0 || time_Prog > 23) {
             System.out.print("Hora invàlida. Torna a introduir-la (0-23): ");
-            hora_Prog = scanner.nextInt();
+            time_Prog = scanner.nextInt();
         }
 
         System.out.print("Quina velocitat vols programar? (1 - 5): ");
@@ -490,14 +492,14 @@ public class app {
         }
 
         System.out.println("===================HORA PROGRAMADA VENTILADOR===================");
-        System.out.println("Ventilador programat a les " + hora_Prog + ":00 a velocitat " + speed_Prog);
+        System.out.println("Ventilador programat a les " + time_Prog + ":00 a velocitat " + speed_Prog);
 
         // Bucle que simula el pas del temps de 0 a 23 hores
-        for (int hora = 0; hora < 24; hora++) {
-            if (hora == hora_Prog) {
+        for (int timeClock = 0; timeClock < 24; timeClock++) {
+            if (timeClock == time_Prog) {
                 fan_ON = true;
                 fanSpeed = speed_Prog;
-                System.out.println("Automàtic: Ventilador ON a velocitat " + fanSpeed + " a les " + hora + ":00");
+                System.out.println("Automàtic: Ventilador ON a velocitat " + fanSpeed + " a les " + timeClock + ":00");
                 System.out.println("================================================================");
             }
         }
