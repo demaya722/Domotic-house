@@ -96,6 +96,7 @@ public class app {
                 switch (roomOption) {
                     case 1: // Menjador
                         livingRoom = (lightOption == 1);
+                        light_intensity(scanner);
                         light_ON_OFF();
                         break;
 
@@ -155,6 +156,23 @@ public class app {
         } else {
             System.out.println("Llums de l'habitació " + roomOption + ": Llums OFF");
         }
+    }
+
+    public static void light_intensity(Scanner scanner) {
+        boolean bulce_ligth_intensity = true;
+        int intensity = -1;
+
+        do {
+            System.out.print("Quina intensitat vols programar? (1 - 10): ");
+            intensity = scanner.nextInt();
+
+            if (intensity <= 1 || intensity >= 10) {
+                System.out.print("Intensitat invàlida: ");
+                intensity = scanner.nextInt();
+            } else {
+                bulce_ligth_intensity = false;
+            }
+        } while (bulce_ligth_intensity);
     }
 
     // CALEFACCIÓ
@@ -226,7 +244,9 @@ public class app {
 
             time_Schedule = scanner.nextInt();
 
-            temperature_Time(scanner);
+            if (time_Schedule == 1) {
+                temperature_Time(scanner);
+            }
 
         } while (time_Schedule != 2);
     }
@@ -234,33 +254,42 @@ public class app {
     public static void temperature_Time(Scanner scanner) {
         int time_Schedule = scanner.nextInt();
 
-        if (time_Schedule == 1) {
-            System.out.print("A quina hora vols que s'encengui la calefacció? (0-23): ");
-            int timeProg = scanner.nextInt();
+        boolean bucle_temperature_time = true;
+        int time_prog = -1;
 
-            // Validació de l'hora
-            while (timeProg < 0 || timeProg > 23) {
-                System.out.print("Hora invàlida. Torna a introduir-la (0-23): ");
-                timeProg = scanner.nextInt();
+        do {
+            System.out.print("A quina hora vols cols programar la clefacció? (0-23): ");
+            time_prog = scanner.nextInt();
+
+            if (time_prog < 0 || time_prog > 23) {
+                System.out.print("Hora invàlida. ");
+            } else {
+                bucle_temperature_time = false;
             }
+        } while (bucle_temperature_time);
 
+        boolean bucle_temperature_Cª = true;
+        int tempProg = -1;
+
+        do {
             System.out.print("Quina temperatura vols programar? (10-30 ºC): ");
-            int tempProg = scanner.nextInt();
-            while (tempProg < 10 || tempProg > 30) {
+            tempProg = scanner.nextInt();
+
+            if (tempProg < 10 || tempProg > 30) {
                 System.out.print("Temperatura invàlida. Torna a introduir-la (10-30 ºC): ");
                 tempProg = scanner.nextInt();
+            } else {
+                bucle_temperature_Cª = false;
             }
-            System.out.println("===================HORA PROGRAMADA CALEFACCIÓ===================");
-            System.out.println("Calefacció programada a les " + timeProg + ":00 a " + tempProg + "ºC");
+        } while (bucle_temperature_Cª);
 
-            // Bucle que simula el “pas del temps” de 0 a 23 hores
-            for (int timeClock = 0; timeClock < 24; timeClock++) {
-                if (timeClock == timeProg) {
-                    speed_ON = true;
-                    speed = tempProg;
-                    System.out.println("Automàtic: Calefacció ON a " + speed + "ºC a les " + timeClock + ":00");
-                    System.out.println("=========================================================================");
-                }
+        // Bucle que simula el “pas del temps” de 0 a 23 hores
+        for (int timeClock = 0; timeClock < 24; timeClock++) {
+            if (timeClock == time_Schedule) {
+                speed_ON = true;
+                speed = tempProg;
+                System.out.println("Automàtic: Calefacció ON a " + speed + "ºC a les " + timeClock + ":00");
+                System.out.println("=========================================================================");
             }
         }
     }
@@ -477,7 +506,7 @@ public class app {
 
     public static void fun_Time(Scanner scanner) {
         int time_Prog = bucle_Fun_time();
-        
+
         int speed_Prog = bucle_Fun_Speed(scanner);
 
         System.out.println("===================HORA PROGRAMADA VENTILADOR===================");
@@ -500,7 +529,7 @@ public class app {
                 bucle_Fun = false;
             }
         } while (bucle_Fun);
-        
+
         return time_Prog;
     }
 
@@ -509,17 +538,17 @@ public class app {
         bucle_Fun_Speed = true;
         int speed_Prog = -1;
 
-        do{
+        do {
             System.out.print("Quina velocitat vols programar? (1 - 5): ");
             speed_Prog = scanner.nextInt();
 
-        if (speed_Prog < 1 || speed_Prog > 5) {
-            System.out.print("Velocitat invàlida. Torna a introduir-la (1 - 5): ");
-            speed_Prog = scanner.nextInt();
-        } else{
-            bucle_Fun_Speed = false;
-        }
-        }while (bucle_Fun_Speed);
+            if (speed_Prog < 1 || speed_Prog > 5) {
+                System.out.print("Velocitat invàlida. Torna a introduir-la (1 - 5): ");
+                speed_Prog = scanner.nextInt();
+            } else {
+                bucle_Fun_Speed = false;
+            }
+        } while (bucle_Fun_Speed);
         return speed_Prog;
     }
 
