@@ -102,26 +102,31 @@ public class app {
 
                     case 2: // Cuina
                         kitchen = (lightOption == 1);
+                        light_intensity(scanner);
                         light_ON_OFF();
                         break;
 
                     case 3: // Lavabo
                         bathroom = (lightOption == 1);
+                        light_intensity(scanner);
                         light_ON_OFF();
                         break;
 
                     case 4: // Habitació 1
                         bedroom1 = (lightOption == 1);
+                        light_intensity(scanner);
                         light_ON_OFF();
                         break;
 
                     case 5: // Habitació 2
                         bedroom2 = (lightOption == 1);
+                        light_intensity(scanner);
                         light_ON_OFF();
                         break;
 
                     case 6: // Habitació 3
                         bedroom3 = (lightOption == 1);
+                        light_intensity(scanner);
                         light_ON_OFF();
                         break;
                 }
@@ -166,7 +171,7 @@ public class app {
             System.out.print("Quina intensitat vols programar? (1 - 10): ");
             intensity = scanner.nextInt();
 
-            if (intensity <= 1 || intensity >= 10) {
+            if (intensity < 1 || intensity > 10) {
                 System.out.print("Intensitat invàlida: ");
                 intensity = scanner.nextInt();
             } else {
@@ -252,17 +257,15 @@ public class app {
     }
 
     public static void temperature_Time(Scanner scanner) {
-        int time_Schedule = scanner.nextInt();
-
         boolean bucle_temperature_time = true;
         int time_prog = -1;
 
         do {
-            System.out.print("A quina hora vols cols programar la clefacció? (0-23): ");
+            System.out.print("A quina hora vols programar la calefacció? (0-23): ");
             time_prog = scanner.nextInt();
 
             if (time_prog < 0 || time_prog > 23) {
-                System.out.print("Hora invàlida. ");
+                System.out.println("Hora invàlida.");
             } else {
                 bucle_temperature_time = false;
             }
@@ -276,16 +279,14 @@ public class app {
             tempProg = scanner.nextInt();
 
             if (tempProg < 10 || tempProg > 30) {
-                System.out.print("Temperatura invàlida. Torna a introduir-la (10-30 ºC): ");
-                tempProg = scanner.nextInt();
+                System.out.println("Temperatura invàlida. Torna a introduir-la.");
             } else {
                 bucle_temperature_Cª = false;
             }
         } while (bucle_temperature_Cª);
 
-        // Bucle que simula el “pas del temps” de 0 a 23 hores
         for (int timeClock = 0; timeClock < 24; timeClock++) {
-            if (timeClock == time_Schedule) {
+            if (timeClock == time_prog) {
                 speed_ON = true;
                 speed = tempProg;
                 System.out.println("Automàtic: Calefacció ON a " + speed + "ºC a les " + timeClock + ":00");
